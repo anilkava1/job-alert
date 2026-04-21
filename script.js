@@ -1,24 +1,23 @@
-const API_URL = "https://anilkava-job-api.hf.space/jobs"; // Update with your actual URL
+const API_URL = "https://anilkava-job-api.hf.space/jobs"; 
 
 async function loadJobs() {
     const tableBody = document.getElementById('job-table-body');
     try {
         const response = await fetch(API_URL);
         const data = await response.json();
-        
         tableBody.innerHTML = ""; 
 
         data.forEach(job => {
-            // Default image agar job image na mile
             const jobImg = job.image ? job.image : "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/National_Emblem_of_India_%28Classic_Outline%29.svg/50px-National_Emblem_of_India_%28Classic_Outline%29.svg.png";
             
+            // Yahan Apply Button me 'startTimer' call ho raha hai
             const row = `
                 <tr>
-                    <td style="text-align:center;"><img src="${jobImg}" style="width:50px; border-radius:4px; border:1px solid #ddd;"></td>
+                    <td style="text-align:center;"><img src="${jobImg}" style="width:40px; border-radius:4px;"></td>
                     <td><div class="job-title">${job.title}</div></td>
                     <td><div class="job-desc">${job.description}</div></td>
                     <td>
-                        <a href="${job.link}" target="_blank" rel="noopener noreferrer" class="apply-btn">Apply Now</a>
+                        <button onclick="startTimer('${job.link}')" class="apply-btn" style="cursor:pointer; border:none;">Apply Now</button>
                     </td>
                 </tr>
             `;
@@ -28,4 +27,30 @@ async function loadJobs() {
         tableBody.innerHTML = "<tr><td colspan='4' style='color:red; text-align:center;'>Fetch Error!</td></tr>";
     }
 }
+
+// TIMER LOGIC
+function startTimer(destinationUrl) {
+    const modal = document.getElementById('timerModal');
+    const countdownElement = document.getElementById('countdown');
+    let timeLeft = 9;
+
+    // Pop-up Ads trigger karne ke liye
+    // window.open('YOUR_AD_DIRECT_LINK', '_blank');
+
+    modal.style.display = 'flex';
+    countdownElement.innerText = timeLeft;
+
+    const timer = setInterval(() => {
+        timeLeft--;
+        countdownElement.innerText = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            modal.style.display = 'none';
+            // 9 second baad direct redirection
+            window.open(destinationUrl, '_blank');
+        }
+    }, 1000);
+}
+
 loadJobs();
