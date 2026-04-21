@@ -1,5 +1,5 @@
 // DHAYAN DE: Is URL ke peeche ek query parameter dala hai cache bypass ke liye
-const API_URL = "https://anilkava1-job-api.hf.space/jobs?t=" + new Date().getTime(); 
+const API_URL = "https://anilkava1-job-api.hf.space/jobs" + new Date().getTime(); 
 
 async function loadJobs() {
     const tableBody = document.getElementById('job-table-body');
