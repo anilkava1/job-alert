@@ -1,4 +1,4 @@
-const API_URL = "https://anilkava-job-api.hf.space/jobs"; 
+const API_URL = "https://anilkava1-job-api.hf.space/jobs"; 
 
 async function loadJobs() {
     const tableBody = document.getElementById('job-table-body');
@@ -10,7 +10,6 @@ async function loadJobs() {
         data.forEach(job => {
             const jobImg = job.image ? job.image : "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/National_Emblem_of_India_%28Classic_Outline%29.svg/50px-National_Emblem_of_India_%28Classic_Outline%29.svg.png";
             
-            // Yahan Apply Button me 'startTimer' call ho raha hai
             const row = `
                 <tr>
                     <td style="text-align:center;"><img src="${jobImg}" style="width:40px; border-radius:4px;"></td>
@@ -24,18 +23,20 @@ async function loadJobs() {
             tableBody.innerHTML += row;
         });
     } catch (err) {
-        tableBody.innerHTML = "<tr><td colspan='4' style='color:red; text-align:center;'>Fetch Error!</td></tr>";
+        tableBody.innerHTML = "<tr><td colspan='4' style='text-align:center; color:red;'>Fetch Error! Check Backend.</td></tr>";
     }
 }
 
-// TIMER LOGIC
+// TIMER & AD LOGIC
 function startTimer(destinationUrl) {
     const modal = document.getElementById('timerModal');
     const countdownElement = document.getElementById('countdown');
     let timeLeft = 9;
 
-    // Pop-up Ads trigger karne ke liye
-    // window.open('YOUR_AD_DIRECT_LINK', '_blank');
+    // POPUP AD TRIGGER: 
+    // Direct link open tab me browser block karta hai, 
+    // isliye Smartlink ko user click ke saath hi trigger karna padega.
+    window.open('YOUR_AD_DIRECT_LINK_HERE', '_blank'); 
 
     modal.style.display = 'flex';
     countdownElement.innerText = timeLeft;
@@ -47,8 +48,8 @@ function startTimer(destinationUrl) {
         if (timeLeft <= 0) {
             clearInterval(timer);
             modal.style.display = 'none';
-            // 9 second baad direct redirection
-            window.open(destinationUrl, '_blank');
+            // Speed Fix: Direct location change (window.location) fast hoti hai open() se
+            window.location.href = destinationUrl; 
         }
     }, 1000);
 }
