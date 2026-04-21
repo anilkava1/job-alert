@@ -1,5 +1,5 @@
-// DHAYAN DE: Is link ko hamesha check karein
-const API_URL = "https://anilkava-job-api.hf.space/jobs"; 
+// DHAYAN DE: Apna link dhyan se check karein
+const API_URL = "https://anilkava1-job-api.hf.space/jobs"; 
 
 async function loadJobs() {
     const tableBody = document.getElementById('job-table-body');
@@ -8,15 +8,14 @@ async function loadJobs() {
         const response = await fetch(API_URL);
         const data = await response.json();
         
+        tableBody.innerHTML = ""; // Loader clear
+
         if (data.length === 0) {
-            tableBody.innerHTML = "<tr><td colspan='4' style='text-align:center; padding:20px;'>No data available.</td></tr>";
+            tableBody.innerHTML = "<tr><td colspan='4' style='text-align:center;'>Abhi data khali hai.</td></tr>";
             return;
         }
 
-        tableBody.innerHTML = ""; // Pehle wala error message hatayein
-
         data.forEach(job => {
-            // Default icon agar image na mile
             const jobImg = job.image ? job.image : "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/National_Emblem_of_India_%28Classic_Outline%29.svg/50px-National_Emblem_of_India_%28Classic_Outline%29.svg.png";
             
             const row = `
@@ -34,9 +33,8 @@ async function loadJobs() {
 
     } catch (err) {
         console.error("Fetch Error:", err);
-        tableBody.innerHTML = "<tr><td colspan='4' style='text-align:center; color:red; padding:20px;'><b>Fetch Error!</b><br>Backend URL refresh karein.</td></tr>";
+        tableBody.innerHTML = "<tr><td colspan='4' style='text-align:center; color:red; padding:20px;'><b>Fetch Error!</b><br>Please check if Backend is Public.</td></tr>";
     }
 }
 
-// Site load hote hi function chalao
 loadJobs();
