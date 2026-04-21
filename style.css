@@ -1,0 +1,32 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; min-height: 100vh; display: flex; flex-direction: column; }
+
+.navbar { background: #002e5b; color: white; padding: 15px 5%; border-bottom: 5px solid #ff4500; }
+.logo-area { display: flex; align-items: center; gap: 20px; }
+.logo-area img { height: 60px; background: white; padding: 5px; border-radius: 5px; }
+
+.main-layout { flex: 1; display: flex; width: 100%; padding: 20px 5%; gap: 25px; }
+.content { flex: 3; }
+.sidebar { flex: 1; min-width: 300px; }
+
+.section-title { font-size: 18px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #002e5b; padding-bottom: 5px; display: inline-block; }
+
+.job-card { background: white; padding: 20px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 5px solid #002e5b; transition: 0.3s; }
+.job-card:hover { transform: translateX(5px); }
+.job-card h2 { font-size: 18px; color: #002e5b; margin-bottom: 10px; }
+.job-card p { font-size: 14px; color: #666; margin-bottom: 15px; }
+
+.apply-btn { background: #e44d26; color: white; padding: 8px 18px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px; display: inline-block; }
+
+/* Ads & Footer */
+.ad-banner-top { width: 90%; margin: 15px auto; }
+.ad-placeholder, .ad-box { background: #ddd; border: 1px dashed #999; display: flex; align-items: center; justify-content: center; color: #777; margin-bottom: 15px; }
+.ad-placeholder { height: 90px; }
+.ad-box { height: 250px; }
+
+.main-footer { background: #1a1a1a; color: white; text-align: center; margin-top: auto; }
+.footer-links { padding: 20px 0 10px; }
+.footer-links a { color: #aaa; text-decoration: none; margin: 0 10px; font-size: 14px; }
+.sticky-ad { background: #ff4500; padding: 10px; font-weight: bold; }
+
+@media (max-width: 1024px) { .main-layout { flex-direction: column; } .sidebar { width: 100%; } }
