@@ -1,17 +1,16 @@
-// IS LINK KO SAHI SE CHECK KARO
-const API_URL = "https://anilkava1-job-api.hf.space/jobs"; 
+const API_URL = "https://anilkava-job-api.hf.space/jobs"; 
 
 async function loadJobs() {
     const tableBody = document.getElementById('job-table-body');
     try {
         const response = await fetch(API_URL);
         const data = await response.json();
-        
         tableBody.innerHTML = ""; 
 
         data.forEach(job => {
             const jobImg = job.image ? job.image : "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/National_Emblem_of_India_%28Classic_Outline%29.svg/50px-National_Emblem_of_India_%28Classic_Outline%29.svg.png";
             
+            // Yahan Apply Button me 'startTimer' call ho raha hai
             const row = `
                 <tr>
                     <td style="text-align:center;"><img src="${jobImg}" style="width:40px; border-radius:4px;"></td>
@@ -25,18 +24,18 @@ async function loadJobs() {
             tableBody.innerHTML += row;
         });
     } catch (err) {
-        // Agar error aaye toh ye dikhega
-        tableBody.innerHTML = "<tr><td colspan='4' style='text-align:center; padding:20px; color:red;'>Data load nahi ho raha. Check karein ki Backend PUBLIC hai?</td></tr>";
+        tableBody.innerHTML = "<tr><td colspan='4' style='color:red; text-align:center;'>Fetch Error!</td></tr>";
     }
 }
 
+// TIMER LOGIC
 function startTimer(destinationUrl) {
     const modal = document.getElementById('timerModal');
     const countdownElement = document.getElementById('countdown');
     let timeLeft = 9;
 
-    // Ad Trigger
-    window.open('YOUR_AD_SMARTLINK_HERE', '_blank');
+    // Pop-up Ads trigger karne ke liye
+    // window.open('YOUR_AD_DIRECT_LINK', '_blank');
 
     modal.style.display = 'flex';
     countdownElement.innerText = timeLeft;
@@ -48,6 +47,7 @@ function startTimer(destinationUrl) {
         if (timeLeft <= 0) {
             clearInterval(timer);
             modal.style.display = 'none';
+            // 9 second baad direct redirection
             window.open(destinationUrl, '_blank');
         }
     }, 1000);
