@@ -1,5 +1,5 @@
 // Link bilkul sahi hai kyunki data browser mein dikh raha hai
-const API_URL = "https://anilkava1-job-api.hf.space/jobs"; 
+const API_URL = "https://anilkava-job-api.hf.space/jobs"; 
 
 async function loadJobs() {
     const tableBody = document.getElementById('job-table-body');
